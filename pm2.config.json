@@ -3,7 +3,7 @@
       {
         "name": "app-cluster",
         "script": "index.js",
-        "instances": 8, 
+        "instances": "max", 
         "exec_mode": "cluster", 
         "watch": true,
         "env": {
