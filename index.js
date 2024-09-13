@@ -11,7 +11,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
     // do some load intensive work
     let sum = 0;
-    for (let i = 0; i < 100000000; i++) {
+    for (let i = 0; i < 1000000; i++) {
         // do nothing
         sum += i;
     }
