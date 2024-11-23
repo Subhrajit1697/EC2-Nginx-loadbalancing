@@ -22,20 +22,22 @@ app.use((req, res, next) => {
 app.get('/', async (req, res) => {
     try {
         let sum = 0;
-        for (let i = 0; i < 1000; i++) {
-            // do nothing
-            sum += i;
-        }
         const todos = await Todos.aggregate([
             {
                 $match: {
-                    isCompleted: false,
-                    id: { $gt: 6, $lt: 150 }
+                    completed: false,
+                    id: { $gt: 6, $lt: 150 },
+                    userId: { $ne: 7 }
                 }
             },
-            
+
         ]);
-        res.json({ todos });
+        for (let i = 0; i < 30000; i++) {
+            // do nothing
+            sum += i;
+        }
+
+        res.json({ todos, sum });
     } catch (error) {
         console.log(error);
         res.send('Error');
