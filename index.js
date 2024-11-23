@@ -21,8 +21,21 @@ app.use((req, res, next) => {
 
 app.get('/', async (req, res) => {
     try {
-        const todos =  await Todos.find();
-        res.json({todos});
+        let sum = 0;
+        for (let i = 0; i < 1000; i++) {
+            // do nothing
+            sum += i;
+        }
+        const todos = await Todos.aggregate([
+            {
+                $match: {
+                    isCompleted: false,
+                    id: { $gt: 6, $lt: 150 }
+                }
+            },
+            
+        ]);
+        res.json({ todos });
     } catch (error) {
         console.log(error);
         res.send('Error');
